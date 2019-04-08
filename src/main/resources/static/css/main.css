@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+h1{
+	color:gray;
+}
+
+h2{
+	color:#FF0000;
+}
+
+footer{
+    margin-top:60px;
+}

@@ -1,0 +1,21 @@
+#spring
+spring: 
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      enabled: true
+  datasource:
+    url: jdbc:mariadb://duhosf.com:3306/omb?useUnicode=true&characterEncoding=utf8
+    username: skyblue0o0
+    password: hyoming9
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa: 
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate: 
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
