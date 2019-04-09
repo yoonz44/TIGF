@@ -11,7 +11,7 @@
 	<groupId>com.tigf.yoon</groupId>
 	<artifactId>timeIsGoldFriend</artifactId>
 	<version>0.0.1-TIGF</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>TIGF-1</name>
 	<description>TIGF project for Spring Boot</description>
 
@@ -40,6 +40,10 @@
 		    <groupId>org.thymeleaf.extras</groupId>
 		    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		    <version>3.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>nz.net.ultraq.thymeleaf</groupId>
+		    <artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,6 +86,11 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.2.1</version>
         </dependency>
 	</dependencies>
 

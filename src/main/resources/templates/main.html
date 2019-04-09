@@ -1,26 +1,34 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
-    <title>Main</title>
-    <div th:replace="fragments/header :: header-css"/>
+<title>Main</title>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico'
+	rel='stylesheet' type='text/css'>
+<link href='/css/count.css'
+	rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<div th:replace="fragments/header :: header"/>
-
-<div class="container">
-
-    <div class="starter-template">
-        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
-        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
-        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
-    </div>
-
-</div>
-<!-- /.container -->
-
-<div th:replace="fragments/footer :: footer"/>
-
+	<div layout:fragment="content" th:remove="tag">
+		<div class="container">
+			<div class="form-group col-xs-5">
+				<input id="salary" name="salary"
+					type="number" min="0" class="form-control input-lg" placeholder="salary"/>
+			</div>
+			<div class="form-group" style="margin-top: 6px;">
+				<label class="switch">
+				  <input id="upFlag" type="checkbox">
+				  <span class="slider round"></span>
+				</label>
+			</div>
+			<div class="col-sm-6 col-sm-offset-2 demo">
+				<span id="counter" class="counter">0 kw</span>
+			</div>
+		</div>
+		<script src="/js/count.js"></script>
+	</div>
 </body>
 </html>

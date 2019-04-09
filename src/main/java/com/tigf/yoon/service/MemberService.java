@@ -1,5 +1,6 @@
 package com.tigf.yoon.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tigf.yoon.model.Member;
@@ -14,6 +15,10 @@ public class MemberService {
 	}
 
 	public void saveMember(Member member) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
+		member.setRole("USER");
+		
 		memberRepository.save(member);
 	}
 	

@@ -21,8 +21,10 @@ public class MainController {
 	}
 	
 	@PostMapping("/member")
-	public void saveMember(Member member) {
+	public String saveMember(Member member) {
 		memberService.saveMember(member);
+		
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/main")
@@ -30,9 +32,9 @@ public class MainController {
 		return "main";
 	}
 	
-	@GetMapping("/signUp")
-	public String signUp() {
-		return "signUp";
+	@GetMapping("/member")
+	public String member() {
+		return "member";
 	}
 
 }

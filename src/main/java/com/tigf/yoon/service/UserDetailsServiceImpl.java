@@ -4,8 +4,6 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tigf.yoon.model.Member;
@@ -23,10 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
 		Member user = memberRepository.findByMemberId(memberId);
 		UserDetails userDetails = null;
-		
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		
-		UserBuilder builder = org.springframework.security.core.userdetails.User.builder().passwordEncoder(encoder::encode);
+		UserBuilder builder = org.springframework.security.core.userdetails.User.builder();
 		
 		if (user != null) {
 			userDetails = builder.username(user.getMemberId())

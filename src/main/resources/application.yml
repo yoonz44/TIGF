@@ -1,7 +1,18 @@
 #spring
+server:
+  port: 80
 spring: 
   thymeleaf:
     cache: false
+    check-template: true
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
   servlet:
     multipart:
       enabled: true
@@ -16,6 +27,6 @@ spring:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate: 
-      ddl-auto: create
+      ddl-auto: update
     generate-ddl: true
     show-sql: true

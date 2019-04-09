@@ -1,13 +1,17 @@
 @charset "UTF-8";
 
-h1{
-	color:gray;
+h1 {
+    color: #78ab46;
 }
 
-h2{
-	color:#FF0000;
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc
 }
 
-footer{
-    margin-top:60px;
+footer p {
+    padding: 15px;
 }

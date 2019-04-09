@@ -3,14 +3,17 @@ package com.tigf.yoon.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
+@EntityListeners(value = { AuditingEntityListener.class })
 public class Member {
 	/**
 	 * 아이디

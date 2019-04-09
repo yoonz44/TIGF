@@ -1,22 +1,21 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
-    <div th:replace="fragments/header :: header-css"/>
+<title>Main</title>
 </head>
 <body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="container">
 
-<div class="container">
+			<div class="starter-template">
+				<h1>403 - Access is denied</h1>
+				<div th:inline="text">이보게
+					'[[${#httpServletRequest.remoteUser}]]', 장난질 하다간 손모가지 날라간다우.</div>
+			</div>
 
-    <div class="starter-template">
-        <h1>403 - Access is denied</h1>
-        <div th:inline="text">이보게 '[[${#httpServletRequest.remoteUser}]]', 
-                장난질 하다간 손모가지 날라간다우.</div>
-    </div>
-
-</div>
-<!-- /.container -->
-
-<div th:replace="fragments/footer :: footer"/>
-
+		</div>
+	</div>
 </body>
 </html>
