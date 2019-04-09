@@ -13,6 +13,10 @@ import com.tigf.yoon.repository.MemberRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 	private MemberRepository memberRepository;
 	
+	public UserDetailsServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public UserDetailsServiceImpl(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
 	}
