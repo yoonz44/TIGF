@@ -9,11 +9,7 @@ import com.tigf.yoon.repository.MemberRepository;
 @Service
 public class MemberService {
 	private MemberRepository memberRepository;
-	
-	public MemberService() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	public MemberService(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
 	}

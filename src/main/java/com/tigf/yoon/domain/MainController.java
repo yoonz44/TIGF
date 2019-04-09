@@ -11,10 +11,6 @@ import com.tigf.yoon.service.MemberService;
 public class MainController {
 	private MemberService memberService;
 	
-	public MainController() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public MainController(MemberService memberService) {
 		this.memberService = memberService;
 	}
