@@ -11,7 +11,7 @@
 	<groupId>com.tigf.yoon</groupId>
 	<artifactId>timeIsGoldFriend</artifactId>
 	<version>0.0.1-TIGF</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>TIGF-1</name>
 	<description>TIGF project for Spring Boot</description>
 
