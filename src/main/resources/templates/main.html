@@ -4,12 +4,11 @@
 	layout:decorate="~{fragments/layout}">
 <head>
 <title>Main</title>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-	rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Pacifico'
-	rel='stylesheet' type='text/css'>
-<link href='/css/count.css'
-	rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/vendors.js" th:src="@{/vendors.js}"></script>
+<script type="text/javascript" src="/count.js" th:src="@{/count.js}"></script>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Dokdo' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" media="all" href="/count.css" th:href="@{/count.css}" />
 </head>
 <body>
 	<div layout:fragment="content" th:remove="tag">
@@ -25,10 +24,9 @@
 				</label>
 			</div>
 			<div class="col-sm-6 col-sm-offset-2 demo">
-				<span id="counter" class="counter">0 kw</span>
+				<span id="counter" class="counter">0</span>
 			</div>
 		</div>
-		<script src="/js/count.js"></script>
 	</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.tigf.yoon.domain;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,6 +36,12 @@ public class MainController {
 	@GetMapping("/member")
 	public String member() {
 		return "member";
+	}
+	
+	@GetMapping("/index")
+	public String index(Model model) {
+		model.addAttribute("message", "fucking webpack");
+		return "index";
 	}
 
 }

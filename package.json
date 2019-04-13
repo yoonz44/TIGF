@@ -1,0 +1,36 @@
+{
+  "name": "tigf-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main/client/index.js",
+  "scripts": {
+    "prod": "webpack --env=production",
+    "dev": "webpack-dev-server --env=development",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoonz44/TIGF.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoonz44/TIGF/issues"
+  },
+  "homepage": "https://github.com/yoonz44/TIGF#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  }
+}

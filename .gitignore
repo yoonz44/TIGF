@@ -27,3 +27,8 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+### node ###
+/etc/
+/node/
+/node_modules/
