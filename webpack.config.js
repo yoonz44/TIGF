@@ -10,7 +10,7 @@ module.exports = (env) => {
     return {
         mode: !env ? 'development' : env,
         entry: {
-            index: clientPath + '/index.js',
+        	vendors: ['jquery'],
             count: clientPath + '/count.js'
         },
         output: {
@@ -37,10 +37,10 @@ module.exports = (env) => {
             inline: true,
             contentBase: outputPath,
             publicPath: '/',
-            host: '127.0.0.1',
+            host: '0.0.0.0',
             port: 80,
             proxy: {
-                '**': 'http://127.0.0.1:8088'
+                '**': 'http://127.0.0.1:8080'
             }
         },
         module: {
