@@ -15,3 +15,23 @@ footer {
 footer p {
     padding: 15px;
 }
+
+_:-ms-input-placeholder, :root .defaultFont {
+    font-family: 'Malgun Gothic';
+    font-size: 26px;
+}
+
+_:-ms-input-placeholder, :root .smallFont {
+    font-family: 'Malgun Gothic';
+    font-size: 20px;
+}
+
+.defaultFont {
+	font-family: 'Do Hyeon';
+	font-size: 28px;
+}
+
+.smallFont {
+	font-family: 'Do Hyeon';
+	font-size: 20px;
+}

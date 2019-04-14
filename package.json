@@ -1,7 +1,7 @@
 {
   "name": "tigf-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "tigf",
   "main": "src/main/client/index.js",
   "scripts": {
     "prod": "webpack --env=production",
@@ -31,6 +31,8 @@
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
-  }
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {}
 }

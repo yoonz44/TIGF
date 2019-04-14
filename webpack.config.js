@@ -1,9 +1,11 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')	
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = (env) => {
     let clientPath = path.resolve(__dirname, 'src/main/client');
-    let outputPath = path.resolve(__dirname, 'out');
+    let outputPath = path.resolve(__dirname, (env == 'production') ? 'src/main/resources/static' : 'out');
 
     return {
         mode: !env ? 'development' : env,
@@ -24,7 +26,11 @@ module.exports = (env) => {
                         name: 'vendors'
                     }
                 }
-            }
+            },
+            minimizer: (env == 'production') ? [
+                new UglifyJsPlugin(),
+                new OptimizeCssAssetsPlugin()
+            ] : []
         },
         devServer: {
             hot: false,
@@ -32,9 +38,9 @@ module.exports = (env) => {
             contentBase: outputPath,
             publicPath: '/',
             host: '127.0.0.1',
-            port: 8081,
+            port: 80,
             proxy: {
-                '**': 'http://127.0.0.1'
+                '**': 'http://127.0.0.1:8088'
             }
         },
         module: {

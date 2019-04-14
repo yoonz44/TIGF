@@ -7,24 +7,49 @@
 <script type="text/javascript" src="/vendors.js" th:src="@{/vendors.js}"></script>
 <script type="text/javascript" src="/count.js" th:src="@{/count.js}"></script>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Dokdo' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" media="all" href="/count.css" th:href="@{/count.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/count.css}" />
 </head>
 <body>
 	<div layout:fragment="content" th:remove="tag">
 		<div class="container">
-			<div class="form-group col-xs-5">
-				<input id="salary" name="salary"
-					type="number" min="0" class="form-control input-lg" placeholder="salary"/>
+			<div class="row">
+				<div class="col-xs-2">
+				    <button type="button" id="salaryBtn" class="btn btn-primary btn-xs defaultFont">연봉입력</button>
+				</div>
+				<div class="show col-xs-4">
+						<input id="salary" name="salary" type="number" min="0"
+							class="form-control input-lg defaultFont hidden" placeholder="ex) 18000000" />
+				</div>
+				<div class="show col-xs-4">
+				    <p id="salaryWarn" class="text-danger smallFont hidden">※연봉을 입력해주세요.</p>
+				</div>
 			</div>
-			<div class="form-group" style="margin-top: 6px;">
-				<label class="switch">
-				  <input id="upFlag" type="checkbox">
-				  <span class="slider round"></span>
-				</label>
+			<div class="row rowDiv">
+				<div class="col-xs-2">
+				    <button type="button" id="nightBtn" class="btn btn-danger btn-xs defaultFont">야근시작</button>
+				</div>
+				<div class="col-xs-4 switchDiv">
+	                <label class="switch"> <input id="upFlag" type="checkbox">
+	                    <span class="slider round"></span>
+	                </label>
+				</div>
 			</div>
-			<div class="col-sm-6 col-sm-offset-2 demo">
-				<span id="counter" class="counter">0</span>
+			<div class="row rowDiv">
+				<div class="col-xs-2">
+				    <button type="button" id="multiplyBtn" class="btn btn-success btn-xs defaultFont">X1.5</button>
+				</div>
+				<div class="col-xs-2">
+				    <button type="button" id="resetBtn" class="btn btn-info btn-xs defaultFont">리셋</button>
+				</div>
+			</div>
+			<div id="countDemo">
+				<span id="counter" class="counter">0.00</span>
+				<span class="counter">원</span>
+				<div id="fever" class="hidden">
+					<p>
+						<a href="#"> Fever </a>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
