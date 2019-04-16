@@ -1,17 +1,6 @@
 import { CountUp } from './countUp.js';
 
 window.onload = () => {
-	let counterCK = getCookie("counterCK");
-	let salaryCK = getCookie("salaryCK");
-	
-	if (counterCK != null) {
-		document.getElementById("counter").textContent = counterCK;
-	}
-	
-	if (salaryCK != null) {
-		document.getElementById("salary").value = salaryCK;
-	}
-	
 	salaryBtn.onclick = () => {
 		toggleClass(salaryBtn, "active");
 		
@@ -28,8 +17,15 @@ window.onload = () => {
 	
 	nightBtn.onclick = () => {
 		if (salary.value == "") {
-			removeClass(salaryWarn, "hidden");
-			addClass(salaryWarn, "show");
+			if (salaryWarn.className.indexOf("hidden") > -1) {
+				removeClass(salaryWarn, "hidden");
+				addClass(salaryWarn, "show");
+			}
+			
+			if (salaryBtn.className.indexOf("active") == -1) {
+				salaryBtn.click();
+			}
+			
 			salary.focus();
 			return;
 		}
@@ -48,6 +44,7 @@ window.onload = () => {
 				addClass(fever, "show");
 			}
 		} else {
+			deleteCookie("timeCK");
 			nightBtn.textContent = "야근시작";
 			upFlag.checked = false;
 			
@@ -63,8 +60,15 @@ window.onload = () => {
 	
 	upFlag.onclick = () => {
 		if (salary.value == "") {
-			removeClass(salaryWarn, "hidden");
-			addClass(salaryWarn, "show");
+			if (salaryWarn.className.indexOf("hidden") > -1) {
+				removeClass(salaryWarn, "hidden");
+				addClass(salaryWarn, "show");
+			}
+			
+			if (salaryBtn.className.indexOf("active") == -1) {
+				salaryBtn.click();
+			}
+			
 			salary.focus();
 			upFlag.checked = false;
 			return;
@@ -83,6 +87,7 @@ window.onload = () => {
 				addClass(fever, "show");
 			}
 		} else {
+			deleteCookie("timeCK");
 			nightBtn.textContent = "야근시작";
 			
 			removeClass(document.body, "feverBg");
@@ -96,8 +101,12 @@ window.onload = () => {
 	}
 	
 	salary.onkeydown = (event) => {
-		addClass(salaryWarn, "hidden");
-		removeClass(salaryWarn, "show");
+		if (salary.value == "") {
+			if (salaryWarn.className.indexOf("show") > -1) {
+				addClass(salaryWarn, "hidden");
+				removeClass(salaryWarn, "show");
+			}
+		}
 		
 		if (event.keyCode == 13) {
 			event.preventDefault();
@@ -127,42 +136,81 @@ window.onload = () => {
 	}
 	
 	resetBtn.onclick = () => {
-		deleteCookie("counterCK");
 		deleteCookie("salaryCK");
 		
 		location.reload();
+	}
+	
+	saveBtn.onclick = () => {
+		let salaryStats = new Object();
+		let now = new Date();
+		
+		let nowTime = now.getFullYear() + "" + addZero(now.getDate());
+		
+		salaryStats.salaryTime = nowTime; 
+		salaryStats.member = {"id": document.getElementById("userId").textContent};
+		salaryStats.salary = document.getElementById("salary").value;
+		
+		fetch("/main/salary", {
+		  method: "POST",
+		  body: salaryStats
+		})
+	}
+	
+	let salaryCK = getCookie("salaryCK");
+	
+	if (salaryCK != null) {
+		let tempStr = salaryCK.split("|");
+		
+		document.getElementById("counter").textContent = tempStr[0];
+		document.getElementById("salary").value = tempStr[1];
+	}
+	
+	if (document.getElementById("upFlag").checked) {
+		document.getElementById("upFlag").checked = false;
+		
+		if (salaryCK != null) {
+			let salarySum = salaryCK.split("|")[0];
+			let salary = salaryCK.split("|")[1];
+			let multiply = salaryCK.split("|")[2];
+			let time = salaryCK.split("|")[3];
+			let now = new Date();
+			let tempTime = (now.getTime() - time) / 1000
+			
+			setCookie("salaryCK", salaryCalculator(parseFloat(salarySum), salary, multiply, tempTime) + "|" + salary + "|" + multiply + "|" + now.getTime(), 0.5);
+		}
+		
+		nightBtn.click();
 	}
 }
 
 // Update the count down every 1 second
 let countSalary = setInterval(() => {
 	let upFlag = document.getElementById("upFlag").checked;
-	let salarySum = document.getElementById("counter").textContent;
-	let multiply = document.getElementById("multiplyBtn").textContent;
-	
-	multiply = parseFloat(multiply.replace(/X/g, ''));
-	
-	salarySum = parseFloat(salarySum.replace(/,/g, ''));
 	
 	if (upFlag) {
 		// Get salary
 		let salary = document.getElementById("salary").value;
+		let salarySum = 0.00;
+		let salaryCK = getCookie("salaryCK");
 		
-		// Get todays date and time
-		let now = new Date();
-		let nowTime = now.getHours() + "" + addZero(now.getMinutes());
+		if (salaryCK != null) {
+			salarySum = parseFloat(salaryCK.split("|")[0]);
+		}
 		
+		// countup.js option
 		const options = {
 				startVal: salarySum,
 				decimalPlaces: 2
 		};
 		
-//		if ((nowTime >= 1730 && nowTime < 1800) || (nowTime >= 1900 && nowTime < 2200)) {
-			salarySum += salary / 209 / 12 * multiply / 3600; 
-//		} else if (nowTime >= 2200 && nowTime < 2400) {
-//			salarySum += salary / 209 / 12 * 2 / 3600;
-//		} else {
-//		}
+		let now = new Date();
+		
+		let multiply = document.getElementById("multiplyBtn").textContent;
+		
+		multiply = parseFloat(multiply.replace(/X/g, ''));
+		
+		salarySum = salaryCalculator(salarySum, salary, multiply, 1);
 		
 		// Output the result in an element with id="demo"
 		document.getElementById("counter").textContent = salarySum;
@@ -175,8 +223,7 @@ let countSalary = setInterval(() => {
 		  console.error(demo.error);
 		}
 		
-		setCookie("counterCK", salarySum.toFixed(2), 0.5);
-		setCookie("salaryCK", salary, 0.5);
+		setCookie("salaryCK", salarySum + "|" + salary + "|" + multiply + "|" + now.getTime(), 0.5);
 	}
 }, 1000);
 
@@ -227,6 +274,12 @@ function getCookie(name) {
 function deleteCookie(name) {
     var date = new Date();
     document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
+}
+
+function salaryCalculator(salarySum, salary, multiply, time) {
+	salarySum += salary / 209 / 12 * multiply / 3600 * time;
+	
+	return salarySum.toFixed(2);
 }
 
 // 연봉 : x

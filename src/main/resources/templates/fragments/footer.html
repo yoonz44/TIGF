@@ -8,8 +8,7 @@
             <p>
                 &copy; duhosf.com
                 <span sec:authorize="isAuthenticated()" style="display: inline-block;">
-                    | Logged user: <span sec:authentication="name"></span> |
-<!--                     Roles: <span sec:authentication="principal.authorities"></span> | -->
+                    | Logged user: <span sec:authentication="name" id="userId"></span> |
                     <a href="#" th:onclick="|javascript:signOut()|">Sign Out</a>
                 </span>
             </p>

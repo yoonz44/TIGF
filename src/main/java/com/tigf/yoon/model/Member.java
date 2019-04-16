@@ -19,7 +19,7 @@ public class Member {
 	 * 아이디
 	 */
 	@Id
-	private String memberId;
+	private String id;
 	/**
 	 * 패스워드
 	 */

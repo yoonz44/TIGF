@@ -9,7 +9,7 @@ footer {
     height: 50px;
     bottom: 0;
     width: 100%;
-    background-color: #ccc
+    background-color: #ccc;
 }
 
 footer p {
@@ -34,4 +34,9 @@ _:-ms-input-placeholder, :root .smallFont {
 .smallFont {
 	font-family: 'Do Hyeon';
 	font-size: 20px;
+}
+
+.btn-custom1 {
+	background-color: #d6a47a;
+	color: #ffffff;
 }
